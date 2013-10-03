@@ -1,7 +1,12 @@
 body {
-    background: #444;
+    background: #222;
     margin: 0;
     padding: 0;
+}
+
+div.test {
+    /* font-family: "Microsoft YaHei"; */
+    font-size: 80%;
 }
 
 textarea#main {
@@ -14,17 +19,18 @@ textarea#main {
     height: 7in;
     width: 5.4in;
 
-    font-family: "Consolas", "Microsoft Yahei", "monospace";
-    font-size: .145in;
-    line-height: .22in;
+    font-family: "Consolas", "Microsoft YaHei", "sans-serif";
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
     border: 0;
     border-radius: .15in;
     outline: none;
-    background: #fff;
+    background: #eee;
+    color: #333;
 }
 
 form {
-    background: #333;
     margin: auto;
     text-align: center;
     vertical-align: middle;
