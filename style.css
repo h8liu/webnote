@@ -4,14 +4,14 @@ body {
 
 textarea#main {
     margin-top: .2in;
-    padding: .1in;
+    padding: .2in;
     font-family: "Consolas", "Microsoft Yahei", "monospace";
-    font-size: .125in;
+    font-size: .145in;
     height: 5in;
-    line-height: .17in;
+    line-height: .22in;
     width: 4in;
     border: 0;
-    border-radius: .1in;
+    border-radius: .15in;
     outline: none;
     background: #fff;
     /* letter-spacing: 1px; */
