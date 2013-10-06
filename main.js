@@ -28,6 +28,7 @@ function main() {
     load(today(), showInMain);
     $("#main").keyup(saveMain);
     $("#main").change(saveMain);
+    $("#main").focus();
 }
 
 $(document).ready(main);
