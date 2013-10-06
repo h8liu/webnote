@@ -4,7 +4,12 @@ function save(name, dat) {
 }
 
 function load(name, f) {
-    $.get("api/" + name, "", f );
+    $.ajax({
+        url: "api/" + name, 
+        data: "",
+        success: f,
+        cache: false
+    });
 }
 
 function today() {

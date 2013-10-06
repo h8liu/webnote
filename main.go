@@ -11,6 +11,7 @@ import (
 )
 
 var addr = ":8000"
+var verbose = false
 
 func pathFor(name string) string {
 	return fmt.Sprintf("dat/%s", name)
@@ -18,6 +19,9 @@ func pathFor(name string) string {
 
 func handleApi (w http.ResponseWriter, r *http.Request) {
 	name := strings.TrimPrefix(r.URL.Path, "/api/")
+	if verbose {
+		fmt.Println(r.Method, name)
+	}
 	switch r.Method {
 	case "POST":
 		dat, err := ioutil.ReadAll(r.Body)
