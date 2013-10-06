@@ -5,13 +5,40 @@ import (
 	"log"
 	"flag"
 	"fmt"
-	"html"
+	// "html"
+	"io/ioutil"
+	"strings"
 )
 
 var addr = ":8000"
 
+func pathFor(name string) string {
+	return fmt.Sprintf("dat/%s", name)
+}
+
 func handleApi (w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello, %q", html.EscapeString(r.URL.Path))
+	name := strings.TrimPrefix(r.URL.Path, "/api/")
+	switch r.Method {
+	case "POST":
+		dat, err := ioutil.ReadAll(r.Body)
+		if err != nil {
+			fmt.Println("error on ready body: ", err)
+		} else {
+			err = ioutil.WriteFile(pathFor(name), dat, 0600)
+			if err != nil {
+				fmt.Println("error on saving: ", err)
+			}
+		}
+	case "GET":
+		dat, err := ioutil.ReadFile(pathFor(name))
+		if err != nil {
+			fmt.Println("error on reading: ", err)
+		}
+		_, err = w.Write(dat)
+		if err != nil {
+			fmt.Println("error on returning: ", err)
+		}
+	}
 }
 
 func main() {
