@@ -11,12 +11,18 @@ function today() {
     return "2013-10-05";
 }
 
-var testText = "这个似乎还是保序的……";
+function saveMain() {
+    save(today(), $("#main").val());
+}
+
+function showInMain(dat) {
+    $("#main").val(dat);
+}
+
 function main() {
-    save(today(), testText);
-    load(today(), function(dat) {
-        $("#main").text(dat);
-    });
+    load(today(), showInMain);
+    $("#main").keyup(saveMain);
+    $("#main").change(saveMain);
 }
 
 $(document).ready(main);
