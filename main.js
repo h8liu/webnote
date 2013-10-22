@@ -13,7 +13,22 @@ function load(name, f) {
 }
 
 function today() {
-    return "2013-10-05";
+    var now = new Date();
+    var date = now.getDate();
+    var month = now.getMonth() + 1;
+    var year = now.getFullYear();
+    
+    function s(i) {
+        var ret = "" + i;
+        while (ret.length < 2) {
+            ret = "0" + ret;
+        }
+        return ret;
+    }
+
+    var ret = year + "-" + s(month) + "-" + s(date);
+    console.log(ret);
+    return ret;
 }
 
 function saveMain() {
