@@ -1,10 +1,10 @@
 package main
 
 import (
-	"net/http"
-	"log"
 	"flag"
 	"fmt"
+	"log"
+	"net/http"
 	// "html"
 	"io/ioutil"
 	"strings"
@@ -17,7 +17,7 @@ func pathFor(name string) string {
 	return fmt.Sprintf("dat/%s", name)
 }
 
-func handleApi (w http.ResponseWriter, r *http.Request) {
+func handleApi(w http.ResponseWriter, r *http.Request) {
 	name := strings.TrimPrefix(r.URL.Path, "/api/")
 	if verbose {
 		fmt.Println(r.Method, name)
