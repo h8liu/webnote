@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	// "html"
 	"io/ioutil"
 	"strings"
@@ -34,7 +35,15 @@ func handleApi(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	case "GET":
-		dat, err := ioutil.ReadFile(pathFor(name))
+		path := pathFor(name)
+		info, err := os.Stat(path)
+		if os.IsNotExist(err) {
+			break
+		}
+		if info.IsDir() {
+			break
+		}
+		dat, err := ioutil.ReadFile(path)
 		if err != nil {
 			fmt.Println("error on reading: ", err)
 		}

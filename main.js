@@ -27,7 +27,6 @@ function today() {
     }
 
     var ret = year + "-" + s(month) + "-" + s(date);
-    console.log(ret);
     return ret;
 }
 
@@ -40,10 +39,12 @@ function showInMain(dat) {
 }
 
 function main() {
-    load(today(), showInMain);
+    var t = today();
+    load(t, showInMain);
     $("#main").keyup(saveMain);
     $("#main").change(saveMain);
     $("#main").focus();
+    $("#date").html(t);
 }
 
 $(document).ready(main);
