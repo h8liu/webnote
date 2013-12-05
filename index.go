@@ -1,3 +1,6 @@
+package main
+
+var index = `
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -12,8 +15,10 @@
 <textarea id="main"></textarea>
 </form>
 
-<script language="javascript" type="text/javascript" src="lib/jquery.js"></script>
+<script language="javascript" type="text/javascript" src="./jquery.js"></script>
 <script language="javascript" type="text/javascript" src="./main.js"></script>
 </body>
 
 </html>
+`
+

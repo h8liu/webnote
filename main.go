@@ -54,12 +54,37 @@ func handleApi(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func handleFile(w http.ResponseWriter, r *http.Request) {
+	switch r.URL.Path {
+	case "/jquery.js":
+		w.Header().Set("Content-Type", "text/javascript")
+		w.Write([]byte(jquery))
+	case "/main.js":
+		w.Header().Set("Content-Type", "text/javascript")
+		w.Write([]byte(script))
+	case "/":
+		fallthrough
+	case "/index.html":
+		w.Header().Set("Content-Type", "text/html")
+		w.Write([]byte(index))
+	case "/style.css":
+		w.Header().Set("Content-Type", "text/css")
+		w.Write([]byte(style))
+	case "/favicon.ico":
+		w.Header().Set("Content-Type", "image/x-icon")
+		w.Write(favicon)
+	default:
+		w.WriteHeader(404)
+	}
+}
+
 func main() {
 	flag.StringVar(&addr, "addr", addr, "listen address")
 	flag.Parse()
 
-	server := http.FileServer(http.Dir("."))
-	http.Handle("/", server)
+	// server := http.FileServer(http.Dir("."))
+	// http.Handle("/", server)
+	http.HandleFunc("/", handleFile)
 	http.HandleFunc("/api/", handleApi)
 	for {
 		err := http.ListenAndServe(addr, nil)
