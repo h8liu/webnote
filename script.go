@@ -1,4 +1,6 @@
+package main
 
+var script = `
 function save(name, dat) {
     $.post("api/" + name, dat, function (data) { } );
 }
@@ -48,3 +50,4 @@ function main() {
 }
 
 $(document).ready(main);
+`
